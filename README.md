@@ -18,7 +18,7 @@ The project employed various machine learning algorithms for classification, inc
 
 ## Application Deployment
 
-A demo application was deployed using Flask, offering a simple web form for users to input water quality parameters and receive predictions on water potability. The application's code is hosted on [GitHub](https://github.com/Projects-UNH/Water-Quality-Prediction).
+A demo application was deployed using Flask, offering a simple web form for users to input water quality parameters and receive predictions on water potability. The application's code is hosted on [GitHub](https://github.com/Mandalshravan/Water_Quality_Prediction).
 
 ## How to Run the Flask Application
 
