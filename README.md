@@ -24,7 +24,7 @@ A demo application was deployed using Flask, offering a simple web form for user
 
 1.**Clone the Repository:**
 ```python
-git clone https://github.com/YourUsername/Water-Quality-Prediction.git
+git clone https://github.com/YourUsername/Water_Quality_Prediction.git
 ```
 2.**Navigate to Project Directory:**
 ```python
