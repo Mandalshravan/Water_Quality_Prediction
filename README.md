@@ -2,14 +2,7 @@
 
 ## Introduction
 
-This repository represents the final project submission for Group 4 (The Avengers) in the DSCI-6001 (Fall 2023) course under the guidance of Dr. Ardiana Sula.
-
-The group members are:
-
-- [Mallikarjun Aitha](https://www.linkedin.com/in/mallikarjun-aitha/)
-- [Siri H G](https://www.linkedin.com/in/sirihg/)
-- [Shraddha Shrestha](https://www.linkedin.com/in/shraddha-shrestha-j06/)
-- Madhavi Kancham
+Access to clean drinking water is a global challenge. This project uses machine learning to predict water potability based on key quality indicators like pH, hardness, chloramines, and turbidity — providing a fast, data-driven approach to identifying unsafe water sources.
 
 ## Project Overview
 

@@ -1,18 +1,22 @@
-from flask import Flask, render_template, request, jsonify, url_for
-import pandas as pd
+from flask import Flask, render_template, request
 import joblib
+import pandas as pd
 
 app = Flask(__name__)
-model = joblib.load("svm.pkl")
+
+# Load pipeline (imputer + scaler + model together)
+model = joblib.load("svm_pipeline.pkl")
+
+# Feature names must match training data column order exactly
+FEATURE_NAMES = ['ph', 'Hardness', 'Solids', 'Chloramines', 'Sulfate',
+                  'Conductivity', 'Organic_carbon', 'Trihalomethanes', 'Turbidity']
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/predict_waterQ', methods=['GET','POST'])
+@app.route('/predict_waterQ', methods=['GET', 'POST'])
 def predict_waterQ():
-     # Default prediction value
-
     ph = float(request.form["ph"])
     hardness = float(request.form["hardness"])
     solids = float(request.form["solids"])
@@ -23,18 +27,15 @@ def predict_waterQ():
     trihalomethanes = float(request.form["trihalomethanes"])
     turbidity = float(request.form["turbidity"])
 
-    input_values = [ph, hardness, solids, chloramines, sulfate, conductivity, organicCarbon, trihalomethanes, turbidity]
-    #print(input_values)
-        
-    prediction = model.predict([input_values]) 
-    prediction=prediction[0] # Get the first prediction
+    # Use DataFrame with correct column names so pipeline works properly
+    input_df = pd.DataFrame([[ph, hardness, solids, chloramines, sulfate,
+                               conductivity, organicCarbon, trihalomethanes, turbidity]],
+                             columns=FEATURE_NAMES)
 
-    if prediction ==0:
-        prediction_new='Unsafe'
-    else:
-        prediction_new='Safe'
+    prediction = model.predict(input_df)[0]
+    prediction_new = 'Safe' if prediction == 1 else 'Unsafe'
 
-    return render_template('result.html',prediction=prediction_new)
+    return render_template('result.html', prediction=prediction_new)
 
 if __name__ == '__main__':
     app.run(debug=True)
